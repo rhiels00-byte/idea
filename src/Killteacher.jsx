@@ -15,7 +15,12 @@ const buildQuestions = (subject, count) => {
 const BeatTheTeacher = () => {
   const [viewMode, setViewMode] = useState('TEACHER'); // TEACHER | STUDENT
   const [step, setStep] = useState('SETUP'); // SETUP | PREVIEW | LOBBY | PLAY | RESULT
-  const [config, setConfig] = useState({ class: '', subject: '', qCount: 5 });
+  const [config, setConfig] = useState({
+    level: '초등',
+    grade: '',
+    subject: '',
+    qCount: 5,
+  });
   const [bossHp, setBossHp] = useState(100);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -33,7 +38,7 @@ const BeatTheTeacher = () => {
   const currentQuestion = questions[questionIndex];
 
   const startSession = () => {
-    if (!config.class || !config.subject) return;
+    if (!config.grade || !config.subject) return;
     setStep('PREVIEW');
   };
 
@@ -118,12 +123,26 @@ const BeatTheTeacher = () => {
               <h2 className="text-2xl font-bold mb-4">퀵 셋업</h2>
               <div className="space-y-4">
                 <div>
-                  <label className="text-xs text-slate-500 ml-2">대상 학급</label>
+                  <label className="text-xs text-slate-500 ml-2">학교급</label>
+                  <select
+                    className="mt-1 w-full rounded-xl border-none bg-slate-800 p-4 focus:ring-2 focus:ring-indigo-500"
+                    value={config.level}
+                    onChange={(e) => setConfig({ ...config, level: e.target.value })}
+                  >
+                    {['초등', '중등', '고등'].map((level) => (
+                      <option key={level} value={level}>
+                        {level}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs text-slate-500 ml-2">학년</label>
                   <input
                     className="mt-1 w-full rounded-xl border-none bg-slate-800 p-4 focus:ring-2 focus:ring-indigo-500"
-                    placeholder="예: 3학년 2반"
-                    value={config.class}
-                    onChange={(e) => setConfig({ ...config, class: e.target.value })}
+                    placeholder="3"
+                    value={config.grade}
+                    onChange={(e) => setConfig({ ...config, grade: e.target.value })}
                   />
                 </div>
                 <div>
@@ -164,10 +183,28 @@ const BeatTheTeacher = () => {
                 <li>문항 수만큼 퀴즈 자동 큐레이션</li>
                 <li>실시간 대시보드 자동 활성화</li>
               </ul>
+              <div className="mt-6 overflow-hidden rounded-2xl border border-indigo-500/30 bg-slate-950">
+                <video
+                  className="h-48 w-full object-cover"
+                  src={
+                    config.level === '초등'
+                      ? '/videos/elementary.mp4'
+                      : config.level === '중등'
+                      ? '/videos/middle.mp4'
+                      : '/videos/high.mp4'
+                  }
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
+              </div>
               <div className="mt-6 rounded-2xl border border-indigo-500/30 bg-slate-900/60 p-5">
                 <p className="text-xs uppercase tracking-widest text-indigo-300">미리보기</p>
                 <p className="mt-2 text-lg font-bold">{config.subject || '과목을 입력하세요'}</p>
-                <p className="text-sm text-slate-400">{config.class || '학급을 입력하세요'}</p>
+                <p className="text-sm text-slate-400">
+                  {config.level} {config.grade ? `${config.grade}학년` : '학년 입력'}
+                </p>
               </div>
             </div>
           </div>
@@ -195,7 +232,9 @@ const BeatTheTeacher = () => {
             </div>
             <div className="rounded-3xl border border-indigo-500/30 bg-indigo-900/20 p-8">
               <h3 className="text-lg font-bold mb-2">세션 요약</h3>
-              <p className="text-sm text-slate-400">{config.class}</p>
+              <p className="text-sm text-slate-400">
+                {config.level} {config.grade ? `${config.grade}학년` : '학년 입력'}
+              </p>
               <p className="text-sm text-slate-400">{config.subject}</p>
               <p className="text-sm text-slate-400">총 {config.qCount}문항</p>
               <button
@@ -256,7 +295,9 @@ const BeatTheTeacher = () => {
                     <h2 className="text-3xl font-black text-indigo-400 uppercase tracking-tighter">
                       BOSS: {config.subject}
                     </h2>
-                    <p className="text-slate-500 font-bold">{config.class}의 총공격 진행 중</p>
+                    <p className="text-slate-500 font-bold">
+                      {config.level} {config.grade ? `${config.grade}학년` : ''}의 총공격 진행 중
+                    </p>
                   </div>
                   <span className="text-4xl font-black text-red-500">{bossHp}%</span>
                 </div>
@@ -359,7 +400,9 @@ const BeatTheTeacher = () => {
           <div className="rounded-3xl border border-indigo-500/30 bg-slate-900 p-12 text-center shadow-2xl">
             <Trophy size={96} className="mx-auto text-yellow-500 mb-6" />
             <h2 className="text-4xl font-black mb-3">VICTORY!</h2>
-            <p className="text-lg text-indigo-300">{config.class} 전사들이 보스를 물리쳤습니다!</p>
+            <p className="text-lg text-indigo-300">
+              {config.level} {config.grade ? `${config.grade}학년` : ''} 전사들이 보스를 물리쳤습니다!
+            </p>
             <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3">
               <div className="rounded-2xl bg-slate-800 p-6">
                 <p className="text-xs text-slate-500 uppercase">Top Damager</p>
