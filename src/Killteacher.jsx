@@ -296,13 +296,22 @@ const BeatTheTeacher = () => {
         {step === 'PLAY' && (
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2 space-y-6">
-              <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <Zap size={120} />
+              <div className="rounded-3xl border border-slate-800 bg-slate-900 p-8">
+                <div className="flex items-end justify-between mb-4">
+                  <div>
+                    <h2 className="text-3xl font-black text-indigo-400 uppercase tracking-tighter">
+                      BOSS: {config.subject}
+                    </h2>
+                    <p className="text-slate-500 font-bold">
+                      {config.level} {config.grade ? `${config.grade}학년` : ''}의 총공격 진행 중
+                    </p>
+                  </div>
+                  <span className="text-4xl font-black text-red-500">{bossHp}%</span>
                 </div>
-                <div className="absolute inset-0">
+
+                <div className="overflow-hidden rounded-2xl border border-indigo-500/30 bg-slate-950">
                   <video
-                    className="h-full w-full object-cover opacity-25"
+                    className="h-64 w-full object-cover"
                     src={
                       config.level === '초등'
                         ? '/videos/elementary.mp4'
@@ -315,34 +324,25 @@ const BeatTheTeacher = () => {
                     loop
                     playsInline
                   />
-                  <div className="absolute inset-0 bg-slate-950/70" />
                 </div>
-                <div className="flex items-end justify-between mb-4">
-                  <div>
-                    <h2 className="text-3xl font-black text-indigo-400 uppercase tracking-tighter">
-                      BOSS: {config.subject}
-                    </h2>
-                    <p className="text-slate-500 font-bold">
-                      {config.level} {config.grade ? `${config.grade}학년` : ''}의 총공격 진행 중
-                    </p>
+
+                <div className="mt-6 space-y-4">
+                  <div className="h-8 w-full overflow-hidden rounded-full bg-slate-800 border-4 border-slate-800">
+                    <div
+                      className={`h-full bg-gradient-to-r from-red-600 to-orange-400 transition-all duration-500 ${
+                        lastHit ? 'animate-pulse' : ''
+                      }`}
+                      style={{ width: `${bossHp}%` }}
+                    />
                   </div>
-                  <span className="text-4xl font-black text-red-500">{bossHp}%</span>
-                </div>
-                <div className="h-8 w-full overflow-hidden rounded-full bg-slate-800 border-4 border-slate-800">
-                  <div
-                    className={`h-full bg-gradient-to-r from-red-600 to-orange-400 transition-all duration-500 ${
-                      lastHit ? 'animate-pulse' : ''
-                    }`}
-                    style={{ width: `${bossHp}%` }}
-                  />
-                </div>
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="h-16 w-16 rounded-full bg-indigo-500/20 flex items-center justify-center">
-                    <Sword size={32} className="text-indigo-300" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold">몬스터를 쓰러트리는 중</p>
-                    <p className="text-xs text-slate-400">정답이 쌓일수록 HP가 감소합니다.</p>
+                  <div className="flex items-center gap-3">
+                    <div className="h-16 w-16 rounded-full bg-indigo-500/20 flex items-center justify-center">
+                      <Sword size={32} className="text-indigo-300" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold">몬스터를 쓰러트리는 중</p>
+                      <p className="text-xs text-slate-400">정답이 쌓일수록 HP가 감소합니다.</p>
+                    </div>
                   </div>
                 </div>
               </div>
