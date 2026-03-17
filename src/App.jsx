@@ -1,37 +1,21 @@
 import React from 'react';
 import MindLogWidget from './MindLogWidget';
+import Killteacher from './Killteacher';
 
 const TOOLS = [
   {
     id: 1,
-    title: '성적 관리 시스템',
-    description: '학생들의 성적과 평가 데이터를 한눈에 확인하고 분석하세요.',
-    icon: '📊',
-  },
-  {
-    id: 2,
-    title: '스마트 출석부',
-    description: 'QR코드 및 얼굴인식을 통한 간편하고 빠른 스마트 출석 체크.',
-    icon: '✅',
-  },
-  {
-    id: 3,
-    title: '디지털 수업 자료실',
-    description: '수업에 필요한 다양한 멀티미디어 교보재를 손쉽게 공유합니다.',
-    icon: '📁',
-  },
-  {
-    id: 4,
-    title: '학부모 소통 채널',
-    description: '학부모님들과 쉽고 안전하게 소통할 수 있는 통합 알림장.',
-    icon: '💬',
-  },
-  {
-    id: 5,
     title: '마음 로그',
     description: '선생님의 마음을 기록합니다. 그리고 위로해드립니다.',
     icon: '💖',
     link: '/mindlog',
+  },
+  {
+    id: 2,
+    title: '선생님을 쓰러트려라',
+    description: '친구들아 힘을 합쳐서 문제를 풀거라',
+    icon: '⚔️',
+    link: '/killteacher',
   },
 ];
 
@@ -82,9 +66,14 @@ const MindLogPage = () => {
   );
 };
 
+const KillteacherPage = () => {
+  return <Killteacher />;
+};
+
 const App = () => {
   const path = window.location.pathname;
   if (path.startsWith('/mindlog')) return <MindLogPage />;
+  if (path.startsWith('/killteacher')) return <KillteacherPage />;
   return <Landing />;
 };
 
