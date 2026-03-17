@@ -300,6 +300,23 @@ const BeatTheTeacher = () => {
                 <div className="absolute top-0 right-0 p-4 opacity-10">
                   <Zap size={120} />
                 </div>
+                <div className="absolute inset-0">
+                  <video
+                    className="h-full w-full object-cover opacity-25"
+                    src={
+                      config.level === '초등'
+                        ? '/videos/elementary.mp4'
+                        : config.level === '중등'
+                        ? '/videos/middle.mp4'
+                        : '/videos/high.mp4'
+                    }
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                  <div className="absolute inset-0 bg-slate-950/70" />
+                </div>
                 <div className="flex items-end justify-between mb-4">
                   <div>
                     <h2 className="text-3xl font-black text-indigo-400 uppercase tracking-tighter">
@@ -370,6 +387,22 @@ const BeatTheTeacher = () => {
                 </div>
               ) : (
                 <div className="space-y-4">
+                  <div className="overflow-hidden rounded-2xl border border-indigo-500/30 bg-slate-950">
+                    <video
+                      className="h-32 w-full object-cover opacity-80"
+                      src={
+                        config.level === '초등'
+                          ? '/videos/elementary.mp4'
+                          : config.level === '중등'
+                          ? '/videos/middle.mp4'
+                          : '/videos/high.mp4'
+                      }
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  </div>
                   <h3 className="text-xl font-bold">학생 퀴즈</h3>
                   <div className="rounded-2xl bg-slate-900/60 p-4 text-sm text-slate-300">
                     <p className="text-xs text-indigo-300">Q{currentQuestion.id}</p>
