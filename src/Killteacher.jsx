@@ -38,7 +38,7 @@ const BeatTheTeacher = () => {
   const currentQuestion = questions[questionIndex];
 
   const startSession = () => {
-    if (!config.grade || !config.subject) return;
+    if (!config.grade.trim() || !config.subject.trim()) return;
     setStep('PREVIEW');
   };
 
@@ -170,10 +170,20 @@ const BeatTheTeacher = () => {
                 </div>
                 <button
                   onClick={startSession}
-                  className="w-full rounded-xl bg-indigo-600 py-4 text-lg font-bold shadow-lg shadow-indigo-500/20 transition-all hover:bg-indigo-500"
+                  disabled={!config.grade.trim() || !config.subject.trim()}
+                  className={`w-full rounded-xl py-4 text-lg font-bold shadow-lg transition-all ${
+                    !config.grade.trim() || !config.subject.trim()
+                      ? 'cursor-not-allowed bg-indigo-600/40 text-indigo-200'
+                      : 'bg-indigo-600 shadow-indigo-500/20 hover:bg-indigo-500'
+                  }`}
                 >
                   퀴즈 생성 & 미리보기
                 </button>
+                {(!config.grade.trim() || !config.subject.trim()) && (
+                  <p className="text-xs text-slate-400">
+                    학년과 과목을 입력하면 다음 단계로 이동합니다.
+                  </p>
+                )}
               </div>
             </div>
             <div className="rounded-3xl border border-indigo-500/30 bg-indigo-900/20 p-8">
