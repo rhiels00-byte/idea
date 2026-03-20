@@ -1,16 +1,18 @@
-# React + Vite
+# Killteacher
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+교사용 AI 퀴즈 레이드 서비스 문서는 아래 파일에 정리되어 있습니다.
 
-Currently, two official plugins are available:
+- [PRD 문서](./docs/KILLTEACHER_PRD.md)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+로컬 실행:
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+배포 전 확인:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `VITE_GEMINI_API_KEY` 환경변수 설정
+- `public/videos` 폴더 포함
+- `src/Killteacher.jsx` 와 `src/killteacher/*` 포함

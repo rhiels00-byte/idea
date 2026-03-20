@@ -6,7 +6,7 @@ const TOOLS = [
   {
     id: 1,
     title: '마음 로그',
-    description: '선생님의 마음을 기록합니다. 그리고 위로해드립니다.',
+    description: '마음을 기록하고 행복을 찾으세요.',
     icon: '💖',
     link: '/mindlog',
   },

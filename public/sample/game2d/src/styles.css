@@ -1,0 +1,140 @@
+:root {
+  font-family: Inter, Pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #eef2ff;
+  background: #0b1020;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(83, 162, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, #12182e 0%, #080c17 100%);
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #62b3ff, #6c79ff);
+  color: white;
+}
+
+button.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.app-shell {
+  width: min(1200px, calc(100vw - 40px));
+  margin: 24px auto;
+  display: grid;
+  gap: 18px;
+}
+
+.panel {
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(9, 12, 24, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.24);
+}
+
+.intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: #8dc9ff;
+}
+
+h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.15;
+}
+
+.desc {
+  margin: 12px 0 0;
+  max-width: 860px;
+  color: rgba(238, 242, 255, 0.82);
+  line-height: 1.65;
+}
+
+.controls-help {
+  display: grid;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(238, 242, 255, 0.78);
+}
+
+.game-wrap {
+  padding: 18px;
+}
+
+.game-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.game-canvas {
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #090d18;
+}
+
+.hud-row,
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.stat-card {
+  min-width: 120px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(238, 242, 255, 0.58);
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+}
